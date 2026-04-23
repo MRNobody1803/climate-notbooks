@@ -1,0 +1,43 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+
+- caption: ➡️ C3S Atlas Dataset
+  numbered: 3
+  chapters:
+  - file: chapter01.md
+    title: Reproducibility of the C3S Atlas dataset 
+    sections:
+      - file: notebooks/tx35
+        title: Monthly count of days above 35 degC (tx35)
+      - file: notebooks/cd
+        title: Cooling Degree Days (CD)
+      - file: notebooks/tx35bals
+        title: Monthly count of days above 35 degC with bias adjusting (tx35bals)
+      - file: notebooks/cddbaisimip
+        title: Consecutive Dry Days with bias adjusted precipitation
+
+- caption: ➡️ C3S Atlas Application
+  numbered: 3
+  chapters:
+  - file: chapter02.md
+    title: Reproducibility of the C3S Atlas visual products
+    sections:
+      - file: notebooks/customized_regions
+        title: Customized regions
+      - file: notebooks/geographic_map
+        title: Geographic map
+      - file: notebooks/time_series
+        title: Time series
+      - file: notebooks/annual_cycle
+        title: Annual cycle
+      - file: notebooks/climate_stripes
+        title: Climate stripes
+      - file: notebooks/seasonal_stripes
+        title: Seasonal stripes
+      - file: notebooks/GWLs
+        title: Global Warming Levels (GWLs)
+
