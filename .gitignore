@@ -1,1 +1,18 @@
-book/customizing/data/
+# Large data directories
+**/data/
+**/datasets/
+**/raw/
+auxilier/geojsons/
+
+# Large data file formats
+*.nc
+*.grib
+*.grib2
+*.h5
+*.hdf5
+*.parquet
+*.feather
+*.zarr
+*.sqlite
+*.db
+
