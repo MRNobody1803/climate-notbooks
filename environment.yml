@@ -1,4 +1,4 @@
-name: c3s-atlas
+name: atlas-zarr
 channels:
   - conda-forge
 dependencies:
@@ -6,12 +6,15 @@ dependencies:
   - cf_xarray
   - cftime
   - dask
+  - distributed
   - esmf=8.2.0=mpi_mpich_h5a1934d_102
   - geopandas
   - hdf5
   - jupyterlab
+  - jinja2
   - matplotlib
   - netcdf4
+  - numcodecs
   - numpy
   - pandas
   - pip
@@ -19,6 +22,7 @@ dependencies:
   - scikit-learn
   - scipy
   - shapely
+  - zarr
   - xclim=0.47.0=py38h578d9bd_0
   - xesmf=0.6.3=pyhd8ed1ab_1
   - yaml
