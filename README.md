@@ -1,53 +1,53 @@
 # Climate Notebooks
 
-This repository contains Jupyter notebooks and reusable Python utilities to reproduce climate indicators and visual products inspired by the Copernicus C3S Atlas workflow.
+Ce dépôt contient des notebooks climat et un package Python local pour reproduire des analyses/visualisations inspirées du workflow C3S Atlas.
 
-It combines:
-- A Python package (`c3s_atlas/`) with processing helpers (aggregation, interpolation, indices, temporal handling, units, analysis).
-- A Jupyter Book project (`book/`) with notebooks for climate indices and visual products (maps, time series, stripes, annual cycles, customized regions).
-- Auxiliary metadata (`auxilier/`) used by notebooks and regional analyses.
+## Contenu du projet
 
-## Repository structure
+- `c3s_atlas/`: package Python (agrégation, interpolation, indices, unités, analyses, temporalité).
+- `book/notebooks/`: notebooks principaux (cartes, séries temporelles, stripes, cycles annuels, etc.).
+- `book/customizing/`: workflows personnalisés (Afrique/Maroc, scripts de génération de previews).
+- `auxilier/`: fichiers auxiliaires (`settings.json`, `regions.json`).
+- `data/`: données locales (non versionnées pour les gros formats).
+- `environment.yml`: environnement Conda recommandé.
+- `setup.py`: installation editable du package local.
 
-- `c3s_atlas/`: Core Python functions and wrappers used by notebooks.
-- `book/notebooks/`: Main reproducible notebooks.
-- `book/customizing/`: Custom workflows/scripts for regional products.
-- `auxilier/`: Settings and region metadata.
-- `environment.yml`: Conda environment definition.
-- `setup.py`: Editable installation of the local package.
-
-## Setup
+## Installation
 
 ```bash
 conda env create -f environment.yml
-conda activate c3s-atlas
+conda activate atlas-zarr
 pip install -e .
 ```
 
-## Run notebooks
+## Lancer les notebooks
 
 ```bash
 jupyter lab
 ```
 
-Then open notebooks from `book/notebooks/` or `book/customizing/`.
+Ouvrir ensuite les notebooks dans `book/notebooks/` ou `book/customizing/`.
 
-## Build the Jupyter Book
+## Notebook NetCDF -> Zarr
+
+Le notebook `book/notebooks/netcdf_to_zarr.ipynb`:
+- détecte automatiquement la racine du projet ;
+- permet de cibler un sous-dossier de `data/` ;
+- applique un chunking configurable (`time/lat/lon`) ;
+- écrit un store Zarr `.zarr`.
+
+Si le backend `zarr` n'est pas détecté dans le kernel, vérifier l'environnement (`xarray`, `zarr`, `numcodecs`, `dask`) puis redémarrer le kernel.
+
+## Construire le Jupyter Book
 
 ```bash
 pip install -r book/requirements.txt
 jupyter-book build book
 ```
 
-Generated pages are written to `book/_build/html/`.
+Sortie HTML: `book/_build/html/`
 
-## Data files and Git policy
+## Données et Git
 
-Large data files are intentionally excluded from version control through `.gitignore` (for example files under `**/data/` and large binary climate formats such as `.nc`, `.h5`, `.parquet`, `.geojson`).
-
-If you run notebooks that require local datasets, place those files in the expected data folders (for example under `book/customizing/data/`) on your machine.
-
-## Notes
-
-- This project is designed for reproducible analysis workflows in Python/Jupyter.
-- Some notebooks depend on external climate datasets that are not stored in the repository.
+Les gros fichiers de données sont exclus du versioning via `.gitignore` (ex: `.nc`, `.h5`, `.parquet`, `.geojson`).
+Placer les datasets localement dans `data/` selon les besoins des notebooks.
